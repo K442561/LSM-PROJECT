@@ -1,0 +1,33 @@
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+.npm/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+*.egg-info/
+
+# Large Binaries / Temporary Executables
+bin/
+*.exe
+
+# Database runtime & logs
+backend/data/*.db-journal
+*.log
+
+# Secrets & Local Environment
+.env
+backend/.env
+!.env.example
+!backend/.env.example
+
+# OS generated
+Thumbs.db
+Desktop.ini
+.DS_Store

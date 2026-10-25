@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d6" for="edge" attr.name="maxspeed" attr.type="string" />
+  <key id="d5" for="edge" attr.name="highway" attr.type="string" />
+  <key id="d4" for="edge" attr.name="length" attr.type="string" />
+  <key id="d3" for="node" attr.name="x" attr.type="string" />
+  <key id="d2" for="node" attr.name="y" attr.type="string" />
+  <key id="d1" for="node" attr.name="name" attr.type="string" />
+  <key id="d0" for="graph" attr.name="crs" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="101">
+      <data key="d1">VIT Katpadi Main Gate</data>
+      <data key="d2">12.9692</data>
+      <data key="d3">79.1559</data>
+    </node>
+    <node id="102">
+      <data key="d1">Katpadi Railway Station</data>
+      <data key="d2">12.971</data>
+      <data key="d3">79.1384</data>
+    </node>
+    <node id="103">
+      <data key="d1">Vellore New Bus Stand</data>
+      <data key="d2">12.9264</data>
+      <data key="d3">79.1352</data>
+    </node>
+    <node id="104">
+      <data key="d1">Vellore Old Bus Stand / Town</data>
+      <data key="d2">12.918</data>
+      <data key="d3">79.133</data>
+    </node>
+    <node id="105">
+      <data key="d1">VIT Gate 11 Outer Road</data>
+      <data key="d2">12.974</data>
+      <data key="d3">79.162</data>
+    </node>
+    <node id="106">
+      <data key="d1">Vallimalai Road Junction</data>
+      <data key="d2">12.952</data>
+      <data key="d3">79.22</data>
+    </node>
+    <node id="107">
+      <data key="d1">Arcot / Timiri Junction</data>
+      <data key="d2">12.87</data>
+      <data key="d3">79.32</data>
+    </node>
+    <node id="108">
+      <data key="d1">Arani Bus Stand</data>
+      <data key="d2">12.6687</data>
+      <data key="d3">79.2839</data>
+    </node>
+    <node id="109">
+      <data key="d1">Santhavasal Junction</data>
+      <data key="d2">12.58</data>
+      <data key="d3">79.2</data>
+    </node>
+    <node id="110">
+      <data key="d1">Kaniyambadi Junction</data>
+      <data key="d2">12.83</data>
+      <data key="d3">79.14</data>
+    </node>
+    <node id="111">
+      <data key="d1">Kannamangalam</data>
+      <data key="d2">12.75</data>
+      <data key="d3">79.16</data>
+    </node>
+    <node id="112">
+      <data key="d1">Polur Town Bus Stand</data>
+      <data key="d2">12.5057</data>
+      <data key="d3">79.1242</data>
+    </node>
+    <node id="113">
+      <data key="d1">Kalambur Junction</data>
+      <data key="d2">12.55</data>
+      <data key="d3">79.18</data>
+    </node>
+    <node id="114">
+      <data key="d1">Chengam Road Junction TVM</data>
+      <data key="d2">12.235</data>
+      <data key="d3">79.06</data>
+    </node>
+    <node id="115">
+      <data key="d1">Tiruvannamalai Central Bus Stand</data>
+      <data key="d2">12.228</data>
+      <data key="d3">79.068</data>
+    </node>
+    <node id="116">
+      <data key="d1">Tiruvannamalai Temple / Center</data>
+      <data key="d2">12.2253</data>
+      <data key="d3">79.0747</data>
+    </node>
+    <edge source="101" target="102" id="0">
+      <data key="d4">2192.819445774172</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="101" target="103" id="0">
+      <data key="d4">6050.513026185475</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="101" target="105" id="0">
+      <data key="d4">977.004989745806</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="102" target="101" id="0">
+      <data key="d4">2192.819445774172</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="102" target="103" id="0">
+      <data key="d4">5717.113423713347</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="103" target="101" id="0">
+      <data key="d4">6050.513026185475</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="103" target="102" id="0">
+      <data key="d4">5717.113423713347</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="103" target="104" id="0">
+      <data key="d4">1108.588295848358</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="103" target="110" id="0">
+      <data key="d4">12341.5831507269</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="103" target="108" id="0">
+      <data key="d4">37811.8572724425</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="104" target="103" id="0">
+      <data key="d4">1108.588295848358</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="104" target="110" id="0">
+      <data key="d4">11286.709819904672</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="105" target="101" id="0">
+      <data key="d4">977.004989745806</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="105" target="106" id="0">
+      <data key="d4">7755.884475548897</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="106" target="105" id="0">
+      <data key="d4">7755.884475548897</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="106" target="107" id="0">
+      <data key="d4">16288.15522271495</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="107" target="106" id="0">
+      <data key="d4">16288.15522271495</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="107" target="108" id="0">
+      <data key="d4">26131.808648428912</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="108" target="107" id="0">
+      <data key="d4">26131.808648428912</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="108" target="109" id="0">
+      <data key="d4">15435.557171655604</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="108" target="112" id="0">
+      <data key="d4">28838.911893341654</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="108" target="103" id="0">
+      <data key="d4">37811.8572724425</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="109" target="108" id="0">
+      <data key="d4">15435.557171655604</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="109" target="113" id="0">
+      <data key="d4">4576.875778519645</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="109" target="115" id="0">
+      <data key="d4">47935.5863976621</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="110" target="103" id="0">
+      <data key="d4">12341.5831507269</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="110" target="104" id="0">
+      <data key="d4">11286.709819904672</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="110" target="111" id="0">
+      <data key="d4">10529.563338789607</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="111" target="110" id="0">
+      <data key="d4">10529.563338789607</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="111" target="112" id="0">
+      <data key="d4">31557.435656061658</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="111" target="113" id="0">
+      <data key="d4">25696.28608409885</data>
+      <data key="d5">tertiary</data>
+      <data key="d6">40.0</data>
+    </edge>
+    <edge source="112" target="111" id="0">
+      <data key="d4">31557.435656061658</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="112" target="114" id="0">
+      <data key="d4">35532.21593016418</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="112" target="113" id="0">
+      <data key="d4">8978.212296774569</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="112" target="108" id="0">
+      <data key="d4">28838.911893341654</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="113" target="109" id="0">
+      <data key="d4">4576.875778519645</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="113" target="112" id="0">
+      <data key="d4">8978.212296774569</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="113" target="111" id="0">
+      <data key="d4">25696.28608409885</data>
+      <data key="d5">tertiary</data>
+      <data key="d6">40.0</data>
+    </edge>
+    <edge source="114" target="112" id="0">
+      <data key="d4">35532.21593016418</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="114" target="115" id="0">
+      <data key="d4">1341.931527071438</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="115" target="114" id="0">
+      <data key="d4">1341.931527071438</data>
+      <data key="d5">secondary</data>
+      <data key="d6">50.0</data>
+    </edge>
+    <edge source="115" target="116" id="0">
+      <data key="d4">905.712597962239</data>
+      <data key="d5">residential</data>
+      <data key="d6">30.0</data>
+    </edge>
+    <edge source="115" target="109" id="0">
+      <data key="d4">47935.5863976621</data>
+      <data key="d5">primary</data>
+      <data key="d6">60.0</data>
+    </edge>
+    <edge source="116" target="115" id="0">
+      <data key="d4">905.712597962239</data>
+      <data key="d5">residential</data>
+      <data key="d6">30.0</data>
+    </edge>
+    <data key="d0">epsg:4326</data>
+  </graph>
+</graphml>

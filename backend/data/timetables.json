@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "corridor": "Vellore - Tiruvannamalai",
+    "description": "SAMPLE DATA - Curated bus and train schedules for testing. To be replaced with recorded or official transit feeds.",
+    "is_sample_data": true,
+    "last_updated": "2026-10-18T20:00:00Z"
+  },
+  "routes": [
+    {
+      "route_id": "ROUTE_BUS_NEW_BUS_STAND",
+      "route_name": "Route 1: Bus via New Bus Stand",
+      "mode": "bus",
+      "summary_path": "VIT Katpadi → Vellore New Bus Stand → Polur → Tiruvannamalai",
+      "total_distance_km": 68.5,
+      "base_delay_spread_min": 12.0,
+      "transfers": 1,
+      "is_sample_data": true,
+      "legs": [
+        {
+          "from": "VIT Katpadi",
+          "to": "Vellore New Bus Stand",
+          "mode": "bus",
+          "distance_km": 6.5,
+          "duration_min": 20,
+          "headway_min": 10,
+          "frequency_desc": "City buses every 10 mins from 05:00 to 23:00",
+          "first_departure": "05:00",
+          "last_departure": "23:00",
+          "transfer_buffer_min": 10
+        },
+        {
+          "from": "Vellore New Bus Stand",
+          "to": "Tiruvannamalai",
+          "mode": "bus",
+          "distance_km": 62.0,
+          "duration_min": 90,
+          "scheduled_departures": [
+            "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00",
+            "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:45", "13:30",
+            "14:15", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00",
+            "18:30", "19:00", "19:45", "20:30", "21:30", "22:30"
+          ]
+        }
+      ]
+    },
+    {
+      "route_id": "ROUTE_BUS_ARANI",
+      "route_name": "Route 2: Bus via VIT 11 Gate & Arani",
+      "mode": "bus",
+      "summary_path": "VIT Gate 11 → Arani Bypass → Santhavasal → Tiruvannamalai",
+      "total_distance_km": 61.0,
+      "base_delay_spread_min": 8.0,
+      "transfers": 1,
+      "is_sample_data": true,
+      "legs": [
+        {
+          "from": "VIT Gate 11 Outer Road",
+          "to": "Arani Bus Stand",
+          "mode": "bus",
+          "distance_km": 36.0,
+          "duration_min": 50,
+          "scheduled_departures": [
+            "05:45", "06:30", "07:15", "08:00", "08:45", "09:30", "10:15", "11:00",
+            "12:00", "13:00", "14:00", "15:00", "15:45", "16:30", "17:15", "18:00",
+            "18:45", "19:30", "20:30", "21:30"
+          ],
+          "transfer_buffer_min": 8
+        },
+        {
+          "from": "Arani Bus Stand",
+          "to": "Tiruvannamalai",
+          "mode": "bus",
+          "distance_km": 25.0,
+          "duration_min": 50,
+          "scheduled_departures": [
+            "06:40", "07:25", "08:10", "08:55", "09:40", "10:25", "11:10", "12:00",
+            "13:00", "14:00", "14:55", "15:55", "16:40", "17:25", "18:10", "18:55",
+            "19:40", "20:30", "21:30", "22:30"
+          ]
+        }
+      ]
+    },
+    {
+      "route_id": "ROUTE_TRAIN_KATPADI",
+      "route_name": "Route 3: Train (Katpadi Jn to Tiruvannamalai)",
+      "mode": "train",
+      "summary_path": "Katpadi Jn (KPD) → Tiruvannamalai (TNM) Direct",
+      "total_distance_km": 65.0,
+      "base_delay_spread_min": 28.0,
+      "transfers": 0,
+      "is_sample_data": true,
+      "legs": [
+        {
+          "from": "Katpadi Jn (KPD)",
+          "to": "Tiruvannamalai (TNM)",
+          "mode": "train",
+          "distance_km": 65.0,
+          "duration_min": 90,
+          "scheduled_departures": [
+            "05:45", "10:15", "14:30", "17:50", "21:20"
+          ]
+        }
+      ]
+    }
+  ]
+}

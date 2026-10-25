@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobility Recovery Engine - Executive Presentation</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-surface: #1e293b;
+      --bg-surface-elevated: #334155;
+      --text-white: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --violet: #8b5cf6;
+      --red: #ef4444;
+      --border: #475569;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0b0f19;
+      color: var(--text-white);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* Presentation Header Toolbar */
+    .top-toolbar {
+      height: 54px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .brand-pill {
+      background: var(--cyan);
+      color: #0f172a;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      background: var(--bg-surface-elevated);
+      color: var(--text-white);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--cyan);
+      color: #0f172a;
+      border-color: var(--cyan);
+    }
+
+    .slide-counter {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cyan);
+      min-width: 80px;
+      text-align: center;
+    }
+
+    /* Main Slide Stage */
+    .stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: radial-gradient(circle at 50% 50%, #172033 0%, #0b0f19 100%);
+    }
+
+    .slide-viewport {
+      width: 100%;
+      max-width: 1300px;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-dark);
+      border-radius: 16px;
+      border: 2px solid var(--border);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+      padding: 44px 54px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-header {
+      margin-bottom: 24px;
+    }
+
+    .category-tag {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--cyan);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .slide-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-white);
+      line-height: 1.2;
+    }
+
+    .slide-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Card Layouts */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      height: 100%;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      height: 100%;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      height: 100%;
+    }
+
+    .grid-4-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      height: 100%;
+    }
+
+    .grid-bmc {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      height: 100%;
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card.cyan { border-color: var(--cyan); }
+    .card.emerald { border-color: var(--emerald); }
+    .card.amber { border-color: var(--amber); }
+    .card.violet { border-color: var(--violet); }
+    .card.red { border-color: var(--red); }
+
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text-white);
+    }
+
+    .card-title.cyan { color: var(--cyan); }
+    .card-title.emerald { color: var(--emerald); }
+    .card-title.amber { color: var(--amber); }
+    .card-title.violet { color: var(--violet); }
+    .card-title.red { color: var(--red); }
+
+    .card ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card li {
+      font-size: 1.15rem;
+      color: var(--text-white);
+      line-height: 1.45;
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .card li::before {
+      content: "•";
+      color: var(--cyan);
+      font-size: 1.4rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    /* Comparison Table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      height: 100%;
+    }
+
+    .comp-table th, .comp-table td {
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 1.05rem;
+      border: 1px solid var(--border);
+    }
+
+    .comp-table th {
+      background: var(--bg-surface-elevated);
+      color: var(--cyan);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    .comp-table td {
+      background: var(--bg-surface);
+      color: var(--text-white);
+    }
+
+    .comp-table td.winner {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--emerald);
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    /* Bottom Info Bar */
+    .bottom-bar {
+      margin-top: 18px;
+      padding: 12px 18px;
+      background: var(--bg-surface);
+      border-radius: 8px;
+      border-left: 4px solid var(--emerald);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    /* Slide Footer */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 8px;
+    }
+
+    /* Key indicator pills */
+    .tag-pill {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* Hide inactive slides */
+    .slide-page {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    .slide-page.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-toolbar">
+    <div class="brand">
+      <span>Mobility Recovery Engine</span>
+      <span class="brand-pill">Executive Deck</span>
+    </div>
+
+    <div class="nav-controls">
+      <button class="btn-nav" id="prevBtn" onclick="prevSlide()">◀ Prev (Left)</button>
+      <span class="slide-counter" id="counter">01 / 15</span>
+      <button class="btn-nav" id="nextBtn" onclick="nextSlide()">Next (Right) ▶</button>
+      <button class="btn-nav" onclick="toggleFullScreen()">⛶ Fullscreen</button>
+    </div>
+  </header>
+
+  <!-- Main Presentation Stage -->
+  <main class="stage">
+    <div class="slide-viewport">
+
+      <!-- SLIDE 1 -->
+      <div class="slide-page active" data-slide="1">
+        <div class="slide-header">
+          <div class="category-tag">CAPSTONE INNOVATION & COMMUTE RECOVERY ENGINE</div>
+          <h1 class="slide-title" style="font-size: 2.8rem; color: #ffffff;">Mobility Recovery Engine</h1>
+          <div style="font-size: 1.45rem; font-weight: 700; color: var(--emerald); margin-top: 6px;">
+            Deadline-Driven Route Recovery & Stochastic Arrival Reliability Platform
+          </div>
+        </div>
+        <div class="slide-content">
+          <div class="card cyan" style="padding: 32px;">
+            <p style="font-size: 1.35rem; line-height: 1.6; color: var(--text-white); margin-bottom: 24px;">
+              A full-stack, zero-cost intelligence system designed for students and working professionals. Instead of only computing the nominal shortest path, it calculates the route with the highest probability of arriving before a strict deadline, backed by 1,000-run Monte Carlo simulations, A* road heuristics, and live recovery plans.
+            </p>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <span class="tag-pill" style="background: rgba(6, 182, 212, 0.2); color: var(--cyan); font-size: 0.95rem; padding: 8px 16px;">
+                🗺️ Pan-India A* Multi-Routing
+              </span>
+              <span class="tag-pill" style="background: rgba(16, 185, 129, 0.2); color: var(--emerald); font-size: 0.95rem; padding: 8px 16px;">
+                🎲 1,000-Run Monte Carlo Engine
+              </span>
+              <span class="tag-pill" style="background: rgba(245, 158, 11, 0.2); color: var(--amber); font-size: 0.95rem; padding: 8px 16px;">
+                ⏰ Latest Safe Departure Countdown
+              </span>
+              <span class="tag-pill" style="background: rgba(139, 92, 246, 0.2); color: var(--violet); font-size: 0.95rem; padding: 8px 16px;">
+                ⚡ Zero-Cost Offline PWA
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide-page" data-slide="2">
+        <div class="slide-header">
+          <div class="category-tag">PROBLEM STATEMENT & COMMUTER REALITY</div>
+          <h1 class="slide-title">Why Conventional GPS Fails Deadline-Bound Commuters</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-3">
+            <div class="card amber">
+              <h3 class="card-title amber">The Average-Time Illusion</h3>
+              <ul>
+                <li>Google Maps & Apple Maps optimize only for static average or shortest distance.</li>
+                <li>They assume constant road conditions, ignoring transit delay variance and traffic volatility.</li>
+                <li>A 10-minute bottleneck cascades into missed connections and ruined schedules.</li>
+              </ul>
+            </div>
+            <div class="card red">
+              <h3 class="card-title red">The Cost of Being Late</h3>
+              <ul>
+                <li>Students face strict 75% attendance cutoffs and locked exam hall doors.</li>
+                <li>Workers face salary dock-ins, missed client pitches, and disciplinary penalties.</li>
+                <li>Commuters suffer severe stress watching unpredictable bus and train schedules.</li>
+              </ul>
+            </div>
+            <div class="card cyan">
+              <h3 class="card-title cyan">Zero Proactive Recovery</h3>
+              <ul>
+                <li>Current navigation tools never provide a "Latest Safe Departure" (LSD) countdown.</li>
+                <li>When transit is missed, existing apps offer no automated contingency plan.</li>
+                <li>Users need on-time arrival certainty, not just nominal travel minutes.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            💡 THE REALITY: Conventional GPS answers "Which route is shortest?" — Commuters urgently need: "Will I arrive before my hard deadline?"
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide-page" data-slide="3">
+        <div class="slide-header">
+          <div class="category-tag">USER RESEARCH & TARGET AUDIENCE</div>
+          <h1 class="slide-title">Target Personas: Who Needs This Engine Most?</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-2">
+            <div class="card cyan">
+              <div class="tag-pill" style="background: var(--cyan); color: #000;">COLLEGE STUDENT (VIT VELLORE)</div>
+              <h3 class="card-title cyan">Rahul Sharma (21)</h3>
+              <ul>
+                <li><strong>Daily Context:</strong> Commutes daily between Katpadi, Arani & Tiruvannamalai for labs & exams.</li>
+                <li><strong>Critical Pain:</strong> Zero tolerance for delay. 75% attendance rule means 1 late arrival blocks semester credits.</li>
+                <li><strong>Transit Reality:</strong> Relies on state transport buses and trains with unpredictable delay spreads (±25 mins).</li>
+                <li><strong>Primary Need:</strong> Needs exact Latest Safe Departure (LSD) countdown and instant backup routes if a bus is missed.</li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <div class="tag-pill" style="background: var(--emerald); color: #000;">WORKING PROFESSIONAL</div>
+              <h3 class="card-title emerald">Priya Menon (28)</h3>
+              <ul>
+                <li><strong>Daily Context:</strong> Daily office commuter navigating highway corridors and public transit.</li>
+                <li><strong>Critical Pain:</strong> Biometric punch-in at 9:15 AM sharp. Accidental phone touches while driving reroute into gridlocks.</li>
+                <li><strong>Transit Reality:</strong> Switches between driving/cabs and suburban transit depending on congestion.</li>
+                <li><strong>Primary Need:</strong> Route locking protection against accidental touches, and side-by-side arrival probability comparison.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4 -->
+      <div class="slide-page" data-slide="4">
+        <div class="slide-header">
+          <div class="category-tag">DESIGN THINKING & USER EMPATHY</div>
+          <h1 class="slide-title">Empathy Map: The Emotional Journey of Late Commuters</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-4">
+            <div class="card cyan">
+              <h3 class="card-title cyan">🧠 THINKS</h3>
+              <ul>
+                <li>"Maps say 50 mins, but it always takes 75 mins in peak rush."</li>
+                <li>"If I miss the 8:15 bus, what is my emergency plan?"</li>
+                <li>"I wonder how much safety buffer I actually have before my deadline."</li>
+              </ul>
+            </div>
+            <div class="card red">
+              <h3 class="card-title red">💔 FEELS</h3>
+              <ul>
+                <li>Severe anxiety watching the clock tick closer to the deadline.</li>
+                <li>Frustration when unexpected bottlenecks ruin an entire day's schedule.</li>
+                <li>Helplessness when relying on infrequent transit with zero recovery advice.</li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <h3 class="card-title emerald">🗣️ SAYS</h3>
+              <ul>
+                <li>"I cannot afford to be even 5 minutes late today!"</li>
+                <li>"Is there a reliable alternative highway, even if it's slightly longer?"</li>
+                <li>"Tell me the latest time I can leave my house safely!"</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <h3 class="card-title amber">🏃 DOES</h3>
+              <ul>
+                <li>Constantly checks watch while rushing frantically out the door.</li>
+                <li>Takes reckless, high-risk detours in panic when stuck behind traffic.</li>
+                <li>Accidentally reroutes navigation due to sweaty fingers or vibrations.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5 -->
+      <div class="slide-page" data-slide="5">
+        <div class="slide-header">
+          <div class="category-tag">PRODUCT-MARKET FIT</div>
+          <h1 class="slide-title">Value Proposition Canvas: Aligning Needs to Solution</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-2">
+            <div class="card amber">
+              <h3 class="card-title amber">CUSTOMER PROFILE</h3>
+              <ul>
+                <li><strong>Jobs:</strong> Reach exams/work before deadline; select optimal transit mode; manage tight connections.</li>
+                <li><strong>Pains:</strong> Inaccurate nominal travel times; zero contingency advice when late; app freezes during poor internet in transit.</li>
+                <li><strong>Gains:</strong> Arrival certainty, predictable departure window, peace of mind, proactive backup routes.</li>
+              </ul>
+            </div>
+            <div class="card cyan">
+              <h3 class="card-title cyan">VALUE MAP (OUR ENGINE)</h3>
+              <ul>
+                <li><strong>Products & Services:</strong> Full-Stack PWA Mobility Recovery Engine with A* Multi-Routing & Pan-India geocoding.</li>
+                <li><strong>Pain Relievers:</strong> 1,000-run Monte Carlo stochastic arrival probability; dynamic Latest Safe Departure countdown.</li>
+                <li><strong>Gain Creators:</strong> Proactive missed-transit fallback suggestions; offline Service Worker cache; touch route lock.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 6 -->
+      <div class="slide-page" data-slide="6">
+        <div class="slide-header">
+          <div class="category-tag">PRODUCT ARCHITECTURE & SCOPE</div>
+          <h1 class="slide-title">Minimum Viable Product (MVP): Delivered Capabilities</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-4">
+            <div class="card cyan">
+              <div class="tag-pill" style="background: var(--cyan); color: #000;">PILLAR 01</div>
+              <h3 class="card-title cyan">A* Multi-Routing</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                Pan-India graph routing using OSMnx/OSRM + Haversine heuristic. Penalty method generates ≥ 3 diverse alternatives with a strict &lt;80% path overlap filter.
+              </p>
+            </div>
+            <div class="card emerald">
+              <div class="tag-pill" style="background: var(--emerald); color: #000;">PILLAR 02</div>
+              <h3 class="card-title emerald">Monte Carlo Engine</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                1,000 iterations per route simulating Gaussian travel distributions. Calculates exact On-Time Probability (OTP %), Expected, and P90 Arrival buffers.
+              </p>
+            </div>
+            <div class="card amber">
+              <div class="tag-pill" style="background: var(--amber); color: #000;">PILLAR 03</div>
+              <h3 class="card-title amber">Recovery & LSD Countdown</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                Dynamic status classification (Can Make It / Risky / Cannot). Live countdown to Latest Safe Departure (LSD) and missed-transit contingency plan.
+              </p>
+            </div>
+            <div class="card violet">
+              <div class="tag-pill" style="background: var(--violet); color: #000;">PILLAR 04</div>
+              <h3 class="card-title violet">PWA Offline & Route Lock</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                Progressive Web App with Service Worker for offline commute tracking. Touch confirmation dialog prevents accidental rerouting while moving.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 7 -->
+      <div class="slide-page" data-slide="7">
+        <div class="slide-header">
+          <div class="category-tag">USER EXPERIENCE & WORKFLOW</div>
+          <h1 class="slide-title">How Our App Works: 4-Step Commuter Journey</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-4-cols">
+            <div class="card cyan">
+              <div class="tag-pill" style="background: var(--cyan); color: #000;">STEP 01</div>
+              <h3 class="card-title cyan">Trip Setup</h3>
+              <ul>
+                <li>Type source & destination or drop pins on map.</li>
+                <li>Enter start time & hard arrival deadline.</li>
+                <li>Select transit mode: Car, Bus, Train, or All.</li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <div class="tag-pill" style="background: var(--emerald); color: #000;">STEP 02</div>
+              <h3 class="card-title emerald">Routing</h3>
+              <ul>
+                <li>Computes 1 shortest + 3 alternative corridors.</li>
+                <li>Penalty method inflates costs on used edges.</li>
+                <li>Strict &lt;80% overlap filter rejects redundant paths.</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <div class="tag-pill" style="background: var(--amber); color: #000;">STEP 03</div>
+              <h3 class="card-title amber">Simulation</h3>
+              <ul>
+                <li>1,000 Monte Carlo runs per route.</li>
+                <li>Calculates On-Time Probability (OTP %).</li>
+                <li>Derives Latest Safe Departure (LSD).</li>
+              </ul>
+            </div>
+            <div class="card violet">
+              <div class="tag-pill" style="background: var(--violet); color: #000;">STEP 04</div>
+              <h3 class="card-title violet">Lock & Go</h3>
+              <ul>
+                <li>Inspect routes side-by-side with maps.</li>
+                <li>Lock route with touch-protection modal.</li>
+                <li>Automatic missed-transit fallback plan.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 8 -->
+      <div class="slide-page" data-slide="8">
+        <div class="slide-header">
+          <div class="category-tag">ENGINEERING FOUNDATION</div>
+          <h1 class="slide-title">4-Tier Full-Stack System Architecture</h1>
+        </div>
+        <div class="slide-content">
+          <div style="display: flex; flex-direction: column; gap: 14px; height: 100%;">
+            <div class="card cyan" style="padding: 14px 20px;">
+              <h3 class="card-title cyan" style="margin-bottom: 4px; font-size: 1.25rem;">
+                TIER 1: CLIENT PRESENTATION (PWA) <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: normal;">[React 18 • Vite • Plain Neumorphic CSS • Leaflet.js • Service Worker]</span>
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-white);">
+                Tactile mobile UI, side-by-side alternative route maps, live LSD countdown timer, interactive pin-picker, and offline caching.
+              </p>
+            </div>
+            <div class="card emerald" style="padding: 14px 20px;">
+              <h3 class="card-title emerald" style="margin-bottom: 4px; font-size: 1.25rem;">
+                TIER 2: API GATEWAY & CONTROLLER <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: normal;">[FastAPI • Uvicorn ASGI • Pydantic Validation • CORS Middleware]</span>
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-white);">
+                Asynchronous REST API providing /plan, /lock, /log, /history, /geocode, and /health endpoints with interactive OpenAPI Swagger documentation.
+              </p>
+            </div>
+            <div class="card amber" style="padding: 14px 20px;">
+              <h3 class="card-title amber" style="margin-bottom: 4px; font-size: 1.25rem;">
+                TIER 3: COMPUTATIONAL ROUTING CORE <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: normal;">[NetworkX • OSMnx • NumPy • A* Heuristic • OSRM Pan-India Engine]</span>
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-white);">
+                Caches regional road networks (.graphml), executes admissible A* search, penalty-based alternative generator, and 1,000-run Monte Carlo simulation.
+              </p>
+            </div>
+            <div class="card violet" style="padding: 14px 20px;">
+              <h3 class="card-title violet" style="margin-bottom: 4px; font-size: 1.25rem;">
+                TIER 4: DATA PERSISTENCE & LEARNING LOOP <span style="font-size: 0.95rem; color: var(--text-muted); font-weight: normal;">[SQLite Database • SQLAlchemy ORM • Welford's Statistical ML]</span>
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-white);">
+                Stores TripLogs, LockedRoutes, and SegmentMetrics. Incrementally updates segment mean travel times (μ) and variance (σ) from real commuter logs.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 9 -->
+      <div class="slide-page" data-slide="9">
+        <div class="slide-header">
+          <div class="category-tag">ALGORITHMIC INNOVATION</div>
+          <h1 class="slide-title">A* Road Routing & Penalty-Based Diverse Alternatives</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-2">
+            <div class="card cyan">
+              <h3 class="card-title cyan">ADMISSIBLE A* ROAD ROUTING</h3>
+              <ul>
+                <li><strong>Haversine Distance Heuristic:</strong><br>
+                  <code>h(u, v) = Haversine(u, v) / Max_Speed (80 km/h)</code><br>
+                  Dividing spherical distance by maximum permissible velocity guarantees the heuristic is strictly <strong>admissible</strong> (never overestimates travel time).
+                </li>
+                <li><strong>Spatial Snap Lookup:</strong><br>
+                  Pre-loads regional road graphs into memory. Uses fast spatial k-d tree lookup to snap GPS coordinates to the nearest network node.
+                </li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <h3 class="card-title emerald">PENALTY METHOD & OVERLAP FILTER</h3>
+              <ul>
+                <li><strong>Iterative Edge Cost Inflation:</strong><br>
+                  <code>Cost'(e) = Cost(e) * (1 + Penalty_Factor)</code><br>
+                  Traversed edges are penalized by 30-50%, forcing A* into distinct highway and bypass corridors on successive iterations.
+                </li>
+                <li><strong>Strict Overlap Rejection (&lt; 80%):</strong><br>
+                  Calculates Jaccard path edge overlap against previously accepted routes. Any candidate sharing &gt;80% path length is strictly rejected.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 10 -->
+      <div class="slide-page" data-slide="10">
+        <div class="slide-header">
+          <div class="category-tag">MATHEMATICAL MODELING</div>
+          <h1 class="slide-title">Stochastic Monte Carlo Simulation & Reliability Scoring</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-3">
+            <div class="card cyan">
+              <h3 class="card-title cyan">Monte Carlo Engine (1,000 Runs)</h3>
+              <ul>
+                <li>Every road segment has an expected duration (μ) and variance (σ).</li>
+                <li>Simulates 1,000 independent random commuter journeys per route.</li>
+                <li>Captures surprise bottlenecks, railway crossings, and peak rush delays.</li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <h3 class="card-title emerald">On-Time Probability & P90</h3>
+              <ul>
+                <li><strong>OTP %</strong> = (Runs arriving before deadline / 1,000) * 100%.</li>
+                <li><strong>P90 Arrival:</strong> Arrival time guaranteed in 90% of simulated journeys.</li>
+                <li><strong>LSD:</strong> Latest Safe Departure = Deadline - P90 Travel Duration.</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <h3 class="card-title amber">Reliability Scoring Formula</h3>
+              <ul>
+                <li><code>Score = Buffer - (w1 * Variability) - (w2 * Wait Time) - (w3 * Transfers)</code></li>
+                <li>Configurable weights prioritize arrival buffer and penalize schedule instability.</li>
+                <li>Provides a single 0-100 reliability index for instant decision-making.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            🎯 MATHEMATICAL ASSURANCE: Commuters never depend on "best-case" estimates — they get statistical proof of on-time arrival before stepping out of the door.
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 11 -->
+      <div class="slide-page" data-slide="11">
+        <div class="slide-header">
+          <div class="category-tag">MACHINE LEARNING & SELF-CALIBRATION</div>
+          <h1 class="slide-title">The Self-Calibrating Commute: Bayesian Feedback Loop</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-3">
+            <div class="card cyan">
+              <div class="tag-pill" style="background: var(--cyan); color: #000;">STEP 01</div>
+              <h3 class="card-title cyan">Empirical Telemetry</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                Commuters log actual departure & arrival times via the /log endpoint. Trip logs record predicted duration vs. actual road transit time, capturing seasonal bottlenecks.
+              </p>
+            </div>
+            <div class="card emerald">
+              <div class="tag-pill" style="background: var(--emerald); color: #000;">STEP 02</div>
+              <h3 class="card-title emerald">Welford's Algorithm</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                Updates running segment mean (μ) and variance (σ²) in a single pass without re-training heavy neural networks: <code>M_k = M_{k-1} + (x_k - M_{k-1})/k</code>. Prevents numerical instability.
+              </p>
+            </div>
+            <div class="card amber">
+              <div class="tag-pill" style="background: var(--amber); color: #000;">STEP 03</div>
+              <h3 class="card-title amber">Adaptive Intelligence</h3>
+              <p style="font-size: 1.15rem; color: var(--text-white); line-height: 1.5;">
+                As more commuters log trips, simulation accuracy increases automatically. Regional road works, monsoon delays, and checkpoint slowdowns reflect dynamically in future OTP % scores.
+              </p>
+            </div>
+          </div>
+          <div class="bottom-bar">
+            🔒 PRIVACY BY DESIGN: All trip calibration is aggregated locally into SQLite segment metrics — zero personal movement tracking or third-party advertising profiling.
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 12 -->
+      <div class="slide-page" data-slide="12">
+        <div class="slide-header">
+          <div class="category-tag">COMMERCIAL VIABILITY</div>
+          <h1 class="slide-title">Business Model Canvas (BMC)</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-bmc">
+            <div class="card cyan" style="padding: 14px;">
+              <h4 style="color: var(--cyan); margin-bottom: 6px; font-size: 1.1rem;">KEY PARTNERS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • State Transit (TNSTC, SR)<br>• Universities (VIT, Anna Univ)<br>• OpenStreetMap contributors<br>• Tech park shuttle operators
+              </p>
+            </div>
+            <div class="card emerald" style="padding: 14px;">
+              <h4 style="color: var(--emerald); margin-bottom: 6px; font-size: 1.1rem;">KEY ACTIVITIES</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Road graph caching & A* routing<br>• 1,000-run Monte Carlo simulation<br>• PWA offline engine updates<br>• Bayesian variance calibration
+              </p>
+            </div>
+            <div class="card amber" style="padding: 14px;">
+              <h4 style="color: var(--amber); margin-bottom: 6px; font-size: 1.1rem;">VALUE PROPOSITIONS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Guaranteed arrival probability (OTP %)<br>• Proactive Latest Safe Departure (LSD)<br>• Missed-transit contingency plans<br>• 100% Zero Paid API costs
+              </p>
+            </div>
+            <div class="card cyan" style="padding: 14px;">
+              <h4 style="color: var(--cyan); margin-bottom: 6px; font-size: 1.1rem;">CUSTOMER RELATIONSHIPS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Automated self-service PWA<br>• Community trip verification logs<br>• Zero intrusive tracking or ads<br>• Touch-protected route locking
+              </p>
+            </div>
+            <div class="card emerald" style="padding: 14px;">
+              <h4 style="color: var(--emerald); margin-bottom: 6px; font-size: 1.1rem;">CUSTOMER SEGMENTS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • University Students (75% attendance)<br>• Shift workers & healthcare staff<br>• Daily corporate office commuters<br>• Regional intercity travelers
+              </p>
+            </div>
+            <div class="card amber" style="padding: 14px;">
+              <h4 style="color: var(--amber); margin-bottom: 6px; font-size: 1.1rem;">CHANNELS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Direct Web PWA (Zero app-store friction)<br>• University student portals<br>• Campus commuter ambassadors<br>• Word-of-mouth student groups
+              </p>
+            </div>
+            <div class="card violet" style="padding: 14px;">
+              <h4 style="color: var(--violet); margin-bottom: 6px; font-size: 1.1rem;">KEY RESOURCES</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Cached OSMnx road graphs<br>• Proprietary reliability algorithms<br>• SQLite historical telemetry<br>• FastAPI & React PWA codebase
+              </p>
+            </div>
+            <div class="card violet" style="padding: 14px;">
+              <h4 style="color: var(--violet); margin-bottom: 6px; font-size: 1.1rem;">COST STRUCTURE</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • Ultra-low server hosting (FastAPI)<br>• Free OSM vector map tiles<br>• Zero paid third-party API keys<br>• Minimal devops & maintenance
+              </p>
+            </div>
+            <div class="card violet" style="padding: 14px;">
+              <h4 style="color: var(--violet); margin-bottom: 6px; font-size: 1.1rem;">REVENUE STREAMS</h4>
+              <p style="font-size: 0.95rem; color: var(--text-white); line-height: 1.4;">
+                • B2B University Campus Attendance SaaS<br>• Corporate Tech Park Commute Portals<br>• Premium crowd congestion alerts<br>• Fleet reliability analytics API
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 13 -->
+      <div class="slide-page" data-slide="13">
+        <div class="slide-header">
+          <div class="category-tag">MARKET ROLLOUT & GROWTH</div>
+          <h1 class="slide-title">Go-To-Market (GTM) Strategy: 3-Phase Execution</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-3">
+            <div class="card cyan">
+              <div class="tag-pill" style="background: var(--cyan); color: #000;">PHASE 1 (MONTHS 1–3)</div>
+              <h3 class="card-title cyan">Campus Beachhead</h3>
+              <ul>
+                <li>Launch along the Katpadi – Vellore – Tiruvannamalai student corridor.</li>
+                <li>Target: 5,000 active student users facing strict morning 8:00 AM lab cutoffs.</li>
+                <li>Validate student attendance improvement and build core road variance dataset.</li>
+                <li>Zero download friction: Share direct PWA web link across campus student groups.</li>
+              </ul>
+            </div>
+            <div class="card emerald">
+              <div class="tag-pill" style="background: var(--emerald); color: #000;">PHASE 2 (MONTHS 4–8)</div>
+              <h3 class="card-title emerald">Corridor Expansion</h3>
+              <ul>
+                <li>Scale to major Indian commute corridors: Chennai-Bengaluru, Mumbai-Pune.</li>
+                <li>Integrate public transit GTFS timetables for Suburban Trains and State Buses.</li>
+                <li>Launch crowdsourced trip logging incentives to reward accurate delay reports.</li>
+                <li>Introduce multi-modal cab + transit dynamic split routing.</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <div class="tag-pill" style="background: var(--amber); color: #000;">PHASE 3 (MONTHS 9–12)</div>
+              <h3 class="card-title amber">B2B Enterprise SaaS</h3>
+              <ul>
+                <li>Partner with IT Parks (OMR Chennai, Whitefield) for employee arrival tracking.</li>
+                <li>Offer universities customized White-Label Attendance Protection Portals.</li>
+                <li>Monetize corporate shuttle route optimization and fleet reliability analytics.</li>
+                <li>Position Mobility Recovery Engine as India's gold standard in punctual transit.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 14 -->
+      <div class="slide-page" data-slide="14">
+        <div class="slide-header">
+          <div class="category-tag">MARKET DIFFERENTIATION</div>
+          <h1 class="slide-title">Competitive Landscape: Why We Stand Out</h1>
+        </div>
+        <div class="slide-content">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>FEATURE / CAPABILITY</th>
+                <th>GOOGLE / APPLE MAPS</th>
+                <th>MOOVIT / CITYMAPPER</th>
+                <th style="color: #34d399;">MOBILITY RECOVERY ENGINE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Optimization Goal</strong></td>
+                <td>Shortest Path / Nominal Time</td>
+                <td>Fixed Schedule Arrival</td>
+                <td class="winner">Arrival Deadline Probability (OTP %)</td>
+              </tr>
+              <tr>
+                <td><strong>Traffic Uncertainty</strong></td>
+                <td>Static live traffic heatmaps</td>
+                <td>Static scheduled timetable</td>
+                <td class="winner">1,000-Run Monte Carlo Simulation</td>
+              </tr>
+              <tr>
+                <td><strong>Proactive Recovery</strong></td>
+                <td>None (Reroutes only post-jam)</td>
+                <td>Shows next scheduled bus</td>
+                <td class="winner">Dynamic Latest Safe Departure + Backup</td>
+              </tr>
+              <tr>
+                <td><strong>Diverse Alternatives</strong></td>
+                <td>1-2 minor road variations</td>
+                <td>Timetable legs only</td>
+                <td class="winner">≥ 3 Guaranteed Distinct (&lt;80% Overlap)</td>
+              </tr>
+              <tr>
+                <td><strong>Accidental Touch Guard</strong></td>
+                <td>None (Screen touch reroutes)</td>
+                <td>None</td>
+                <td class="winner">Route Lock with Confirmation Dialog</td>
+              </tr>
+              <tr>
+                <td><strong>Offline Autonomy</strong></td>
+                <td>Requires manual map download</td>
+                <td>Requires active data plan</td>
+                <td class="winner">Full PWA Service Worker + Local Cache</td>
+              </tr>
+              <tr>
+                <td><strong>API Licensing Cost</strong></td>
+                <td>Very expensive ($$$ per call)</td>
+                <td>Proprietary paid licenses</td>
+                <td class="winner">100% Free & Open-Source (Zero Paid APIs)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SLIDE 15 -->
+      <div class="slide-page" data-slide="15">
+        <div class="slide-header">
+          <div class="category-tag">VISION & ROADMAP</div>
+          <h1 class="slide-title">Never Late Again: The Future of Commute Reliability</h1>
+        </div>
+        <div class="slide-content">
+          <div class="grid-2">
+            <div class="card cyan">
+              <h3 class="card-title cyan">KEY PROJECT TAKEAWAYS</h3>
+              <ul>
+                <li><strong>Mathematical Arrival Certainty:</strong> Pioneers deadline-driven routing replacing blind shortest-path navigation with empirical on-time probabilities.</li>
+                <li><strong>Production-Ready Full-Stack System:</strong> Built with modern FastAPI, React PWA, Leaflet, and SQLite, running 100% locally with zero paid API keys.</li>
+                <li><strong>Commuter Stress Elimination:</strong> Gives students and workers peace of mind with live Latest Safe Departure (LSD) countdowns and emergency contingency routes.</li>
+              </ul>
+            </div>
+            <div class="card amber">
+              <h3 class="card-title amber">FUTURE HORIZONS & ROADMAP</h3>
+              <ul>
+                <li><strong>Real-Time Crowdsourced Bus Beacons:</strong> Integrate low-cost Bluetooth/GPS telemetry from commuter phones to track live government bus positions.</li>
+                <li><strong>Monsoon & Weather Impact Modeling:</strong> Incorporate live precipitation radar data to predict waterlogging speed penalties across Indian state highways.</li>
+                <li><strong>Dynamic Rideshare Split Recovery:</strong> Automatically summon auto-rickshaws or cabs to bridge connection gaps whenever a primary bus is delayed.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide Footer / Page Indicator -->
+      <footer class="slide-footer">
+        <span>Mobility Recovery Engine • Capstone Project Pitch Deck</span>
+        <span>Press <strong>Left / Right Arrow</strong> or <strong>Spacebar</strong> to navigate</span>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 15;
+
+    function showSlide(n) {
+      const slides = document.querySelectorAll('.slide-page');
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+
+      slides.forEach(s => s.classList.remove('active'));
+      const active = document.querySelector(`.slide-page[data-slide="${n}"]`);
+      if (active) active.classList.add('active');
+
+      document.getElementById('counter').innerText = `${String(n).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+      document.getElementById('prevBtn').disabled = (n === 1);
+      document.getElementById('nextBtn').disabled = (n === totalSlides);
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullScreen();
+      }
+    });
+
+    // Initialize
+    showSlide(1);
+  </script>
+</body>
+</html>

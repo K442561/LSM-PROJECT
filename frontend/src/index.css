@@ -1,0 +1,1458 @@
+/* ==========================================================================
+   Mobility Recovery Engine - Neumorphic (Soft UI) Design System
+   Tactile, extruded & sunken physical depth with soft dual directional shadows
+   ========================================================================== */
+
+:root {
+  /* Neumorphic Dark Slate Surface Palette */
+  --bg-primary: #151821;
+  --bg-surface: #1e222d;
+  --bg-surface-elevated: #242936;
+  --bg-surface-sunken: #171a24;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-focus: #3b82f6;
+
+  /* Neumorphic Dual Shadows (Light Top-Left, Dark Bottom-Right) */
+  --neu-extruded: 7px 7px 16px #0f1218, -7px -7px 16px #272d3b;
+  --neu-extruded-sm: 4px 4px 10px #10131a, -4px -4px 10px #282e3d;
+  --neu-extruded-lg: 12px 12px 26px #0d1016, -12px -12px 26px #2b3243;
+  --neu-inset: inset 4px 4px 8px #101319, inset -4px -4px 8px #282d3d;
+  --neu-inset-sm: inset 2px 2px 5px #101319, inset -2px -2px 5px #262c3b;
+  --neu-inset-deep: inset 6px 6px 14px #0c0e14, inset -6px -6px 14px #262c3b;
+  --neu-inset-focus: inset 4px 4px 8px #101319, inset -4px -4px 8px #282d3d, 0 0 12px rgba(59, 130, 246, 0.35);
+
+  /* Status Colors */
+  --color-success: #10b981;
+  --color-success-bg: rgba(16, 185, 129, 0.12);
+  --color-warning: #f59e0b;
+  --color-warning-bg: rgba(245, 158, 11, 0.12);
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-brand: #3b82f6;
+  --color-brand-hover: #2563eb;
+
+  /* Radii & Touch Targets */
+  --touch-target: 48px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --shadow-card: var(--neu-extruded);
+  --shadow-elevated: var(--neu-extruded-lg);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   App Header & Neumorphic Tab Bar
+   ========================================================================== */
+.app-header {
+  background: var(--bg-surface);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px #0e1117;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-main);
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.brand-title:hover {
+  opacity: 0.92;
+}
+
+.brand-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.brand-icon {
+  color: var(--color-brand);
+}
+
+.version-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: var(--bg-surface-sunken);
+  color: #60a5fa;
+  box-shadow: var(--neu-inset-sm);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Neumorphic Sunken Nav Bar */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  min-height: 38px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  user-select: none;
+}
+
+.nav-btn:hover {
+  color: #f8fafc;
+}
+
+/* Neumorphic Active Tab Button */
+.nav-btn.active {
+  background: var(--bg-surface);
+  color: #ffffff;
+  box-shadow: 4px 4px 10px #0f1218, -4px -4px 10px #2a3040, 0 0 14px rgba(59, 130, 246, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-badge-pulse {
+  font-size: 0.62rem;
+  font-weight: 800;
+  background: #10b981;
+  color: #ffffff;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: pulseBadge 2.2s infinite;
+}
+
+@keyframes pulseBadge {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+.active-lock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.network-status-indicator {
+  margin-left: 6px;
+  padding-left: 8px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+}
+
+.online-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #34d399;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: var(--radius-pill);
+}
+
+.pulse-green-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.offline-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: #fbbf24;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: var(--radius-pill);
+}
+
+/* ==========================================================================
+   Main Container & Core Cards
+   ========================================================================== */
+.main-container {
+  flex: 1;
+  padding: 20px 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Neumorphic Extruded Card */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--neu-extruded);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: box-shadow 0.25s ease;
+}
+
+/* ==========================================================================
+   Notice Banners & Alerts
+   ========================================================================== */
+.offline-banner {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded), inset 0 0 10px rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #fbbf24;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.locked-indicator-banner {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded), inset 0 0 12px rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #93c5fd;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Recovery Decision Banner */
+.recovery-banner {
+  padding: 18px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-extruded);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s ease;
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.recovery-banner.can_make_it {
+  box-shadow: var(--neu-extruded), 0 0 20px rgba(16, 185, 129, 0.12);
+  border-left: 5px solid var(--color-success);
+}
+
+.recovery-banner.risky {
+  box-shadow: var(--neu-extruded), 0 0 20px rgba(245, 158, 11, 0.12);
+  border-left: 5px solid var(--color-warning);
+}
+
+.recovery-banner.cannot {
+  box-shadow: var(--neu-extruded), 0 0 20px rgba(239, 68, 68, 0.15);
+  border-left: 5px solid var(--color-danger);
+}
+
+.recovery-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.recovery-status-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.recovery-badge {
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  box-shadow: var(--neu-extruded-sm);
+}
+
+.recovery-badge.can_make_it {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+}
+
+.recovery-badge.risky {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #1e293b;
+}
+
+.recovery-badge.cannot {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+}
+
+/* Sunken Countdown Box */
+.countdown-box {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.countdown-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.countdown-timer {
+  font-size: 1.3rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #f8fafc;
+  letter-spacing: 0.5px;
+}
+
+.recovery-contingency {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+/* ==========================================================================
+   Neumorphic Form Controls & Sunken Inputs
+   ========================================================================== */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Neumorphic Carved Input Field */
+.input-field {
+  background-color: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  min-height: var(--touch-target);
+  width: 100%;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.input-field:focus {
+  box-shadow: var(--neu-inset-focus);
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Tactile Neumorphic Buttons
+   ========================================================================== */
+.btn {
+  min-height: var(--touch-target);
+  padding: 12px 22px;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  color: var(--text-main);
+}
+
+.btn:hover {
+  box-shadow: 6px 6px 14px #0f1218, -6px -6px 14px #2b3142;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  box-shadow: var(--neu-inset);
+  transform: translateY(1px);
+}
+
+/* Primary Vibrant Action Button */
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  box-shadow: 5px 5px 14px #0f1218, -5px -5px 14px #293040, 0 0 16px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 7px 7px 18px #0f1218, -7px -7px 18px #293040, 0 0 22px rgba(37, 99, 235, 0.5);
+}
+
+.btn-primary:active {
+  box-shadow: inset 3px 3px 6px #1e3a8a, inset -3px -3px 6px #3b82f6;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 5px 5px 14px #0f1218, -5px -5px 14px #293040, 0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #1e293b;
+  box-shadow: 5px 5px 14px #0f1218, -5px -5px 14px #293040;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+  box-shadow: 5px 5px 14px #0f1218, -5px -5px 14px #293040, 0 0 16px rgba(239, 68, 68, 0.35);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.btn-secondary:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Neumorphic Preset Chips & Mode Selector Pills
+   ========================================================================== */
+.presets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.preset-chip {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preset-chip:hover {
+  color: #f8fafc;
+  transform: translateY(-1px);
+  box-shadow: 5px 5px 12px #0f1218, -5px -5px 12px #2a3040;
+}
+
+.preset-chip:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: translateY(1px);
+}
+
+/* Mode Selector Button Chips */
+.mode-selector-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  padding: 6px;
+  border-radius: var(--radius-md);
+}
+
+.mode-btn {
+  flex: 1;
+  min-width: 100px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.mode-btn:hover {
+  color: #ffffff;
+}
+
+.mode-btn.active {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  color: var(--color-brand);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Map View with Sculpted Bezel & Floating Legend
+   ========================================================================== */
+.map-container-wrapper {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--neu-extruded-lg), inset 2px 2px 8px #0d0f15;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+  .map-container-wrapper {
+    height: 460px;
+  }
+}
+
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Neumorphic Floating Map Legend */
+.map-legend {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 999;
+  background: rgba(30, 34, 45, 0.94);
+  backdrop-filter: blur(12px);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-shadow: 6px 6px 16px #0f1218, -6px -6px 16px #2a3040;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  max-height: 240px;
+  overflow-y: auto;
+  min-width: 210px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-color-dot {
+  width: 14px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   Neumorphic Route Cards
+   ========================================================================== */
+.routes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.route-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: var(--neu-extruded);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.route-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 9px 9px 22px #0f1218, -9px -9px 22px #2a3142;
+}
+
+.route-card.selected {
+  box-shadow: var(--neu-inset), 0 0 20px rgba(59, 130, 246, 0.25);
+  background: #1b1e28;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.route-card.best-route {
+  box-shadow: var(--neu-extruded), 0 0 16px rgba(16, 185, 129, 0.15);
+}
+
+.route-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.route-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.route-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f8fafc;
+}
+
+.route-path-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.route-best-badge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.recommendation-reason-box {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  border-left: 4px solid var(--color-success);
+  padding: 10px 14px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.85rem;
+  color: #34d399;
+  font-weight: 500;
+}
+
+/* Sunken Metric Pills Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metric-pill {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.metric-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-top: 3px;
+}
+
+.metric-value.high-prob {
+  color: var(--color-success);
+}
+
+.metric-value.med-prob {
+  color: var(--color-warning);
+}
+
+.metric-value.low-prob {
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   Neumorphic Modal Dialog
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 12, 18, 0.80);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 16px;
+}
+
+.modal-content {
+  background: var(--bg-surface);
+  box-shadow: 16px 16px 36px #0d0f15, -16px -16px 36px #2f3546;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  max-width: 480px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.modal-actions .btn {
+  flex: 1;
+}
+
+/* ==========================================================================
+   History Chart & Timeline
+   ========================================================================== */
+.history-chart-wrapper {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  padding: 18px;
+  border-radius: var(--radius-md);
+  margin-top: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.chart-svg {
+  width: 100%;
+  height: 220px;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 2px dashed rgba(255, 255, 255, 0.15);
+}
+
+.timeline-step {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  position: relative;
+  padding-left: 14px;
+}
+
+.timeline-step::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.8);
+}
+
+/* Spinner */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   Analytics Dashboard & Neumorphic Graph Visualizations
+   ========================================================================== */
+.analytics-dashboard-container {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 9px 9px 22px #0f1218, -9px -9px 22px #2b3142;
+}
+
+.stat-card-brand::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+.stat-card-success::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+}
+
+.stat-card-warning::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.stat-card-purple::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #8b5cf6, #c084fc);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+.stat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stat-card-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stat-card-value {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1.2;
+}
+
+.stat-card-sub {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* Monte Carlo Chart Card */
+.chart-card {
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.chart-route-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chart-route-pill {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: #94a3b8;
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.chart-route-pill:hover {
+  color: #f8fafc;
+}
+
+.chart-route-pill.active {
+  color: #ffffff;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm), 0 0 10px rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+.pill-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Sunken Instrument Screen for SVG Chart */
+.svg-chart-wrapper {
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-deep);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-top: 10px;
+}
+
+.density-svg-chart {
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  display: block;
+}
+
+.chart-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.chart-legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.legend-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* Comparative Bar Analysis Segmented Control */
+.chart-segmented-control {
+  display: inline-flex;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.segmented-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.segmented-btn.active {
+  background: var(--bg-surface);
+  color: #ffffff;
+  box-shadow: var(--neu-extruded-sm);
+}
+
+.comparative-bar-row {
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.comparative-bar-row:hover {
+  box-shadow: 6px 6px 14px #0f1218, -6px -6px 14px #2b3142;
+  transform: translateY(-1px);
+}
+
+/* Sunken Decision Matrix Table */
+.decision-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+  text-align: left;
+}
+
+.decision-matrix-table th {
+  padding: 12px 14px;
+  color: var(--text-muted);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--bg-surface-sunken);
+  white-space: nowrap;
+}
+
+.decision-matrix-table td {
+  padding: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.decision-matrix-table tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.decision-matrix-table tr.active-row {
+  background: rgba(37, 99, 235, 0.12);
+  box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.15);
+}
+
+.mode-badge {
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  color: #93c5fd;
+}
+
+.otp-tag {
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.otp-tag.high {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+}
+
+.otp-tag.med {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.otp-tag.low {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Active Trip Cockpit */
+.cockpit-hero-card {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-lg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.cockpit-progress-track {
+  width: 100%;
+  height: 12px;
+  background-color: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.cockpit-progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.7);
+  transition: width 0.5s ease;
+}
+
+/* ==========================================================================
+   Slide 2: Side-by-Side Alternative Route Maps & Multi-Column Layout
+   ========================================================================== */
+.step-slide-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-extruded-sm);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.view-mode-toggle {
+  display: inline-flex;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  gap: 4px;
+}
+
+.view-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-mode-btn:hover {
+  color: #ffffff;
+}
+
+.view-mode-btn.active {
+  background: var(--bg-surface);
+  box-shadow: var(--neu-extruded-sm);
+  color: var(--color-brand);
+  font-weight: 700;
+}
+
+.side-by-side-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.side-by-side-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.side-by-side-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .side-by-side-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .side-by-side-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}
+
+.route-side-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--neu-extruded);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.route-side-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 10px 10px 24px #0f1218, -10px -10px 24px #2b3142;
+}
+
+.route-side-card.selected {
+  box-shadow: var(--neu-inset), 0 0 18px rgba(59, 130, 246, 0.22);
+  background: #1a1e28;
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.route-side-card.best {
+  box-shadow: var(--neu-extruded), 0 0 16px rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.route-side-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.route-side-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.25;
+}
+
+.route-side-subtitle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.route-color-pill {
+  width: 10px;
+  height: 28px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.route-side-map-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--neu-inset-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.single-route-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.single-route-map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.route-map-badge-tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(21, 24, 33, 0.9);
+  backdrop-filter: blur(8px);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #f8fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  z-index: 400;
+}
+
+.route-side-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.otp-progress-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.neu-progress-track {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.neu-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.route-timing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-surface-sunken);
+  box-shadow: var(--neu-inset-sm);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.78rem;
+}
+
+.timing-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timing-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.timing-val {
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.timing-arrow {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.locked-badge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #34d399;
+  border-radius: var(--radius-md);
+  padding: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+}
